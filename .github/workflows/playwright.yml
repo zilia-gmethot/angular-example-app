@@ -6,6 +6,14 @@ on:
     branches: [ main, master ]
 jobs:
   test:
+    services:
+      api:
+        image: ghcr.io/zilia-gmethot/example-api:master
+        credentials:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+        ports:
+          - 3000:3000
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
